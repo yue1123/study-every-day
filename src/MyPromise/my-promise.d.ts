@@ -8,7 +8,7 @@ type onFulfilled<T, TResult1> =
     | undefined
     | null
 
-type onRejected<T, TResult2> =
+type onRejected<TResult2> =
     | ((reason: any) => TResult2 | PromiseLike<TResult2>)
     | undefined
     | null
