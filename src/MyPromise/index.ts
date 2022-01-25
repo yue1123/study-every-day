@@ -69,13 +69,13 @@ function resolvePromise<T>(
         }
     } else {
         // 非thenable之外的普通值处理
-        resolve(x)
+        resolve(x as T)
     }
 }
 
 class MyPromise<T> {
     // 开始状态的值
-    status: Status = Status.PENDING
+    public status: Status = Status.PENDING
     // 当前Promise的终值,他一定有值
     private value!: T
     // 当前Promise的拒因,可能没有值

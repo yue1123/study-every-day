@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="../src/MyPromise/index.js"></script>
+<script>
+    new MyPromise((resolve) => {
+        resolve()
+        console.log(123123)
+    })
+        .then(() => {
+            return 'step1'
+        })
+        .then((res) => {
+            return new MyPromise((resolve) => {
+                setTimeout(() => {
+                    resolve(res + ':' + 'step2')
+                }, 3000)
+            })
+        })
+        .then((res) => {
+            console.log(res) // step1:step2
+        })
+</script>
+
+</body>
+</html>
