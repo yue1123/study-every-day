@@ -43,7 +43,6 @@ function resolvePromise<T>(
     }
     // 防止多次调用
     let called = false
-
     if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
         try {
             const then = (x as PromiseLike<T>).then
@@ -70,7 +69,7 @@ function resolvePromise<T>(
         }
     } else {
         // 非thenable之外的普通值处理
-        reject(x)
+        resolve(x)
     }
 }
 

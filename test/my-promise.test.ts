@@ -32,7 +32,6 @@ new MyPromise<void>((resolve) => {
     console.log(123123)
 })
     .then(() => {
-        console.log('123123ffff')
         return 'step1'
     })
     .then((res) => {
