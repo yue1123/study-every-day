@@ -4,7 +4,7 @@ enum Status {
     REJECTED = 'rejected'
 }
 
-import {Resolve, Reject, Executor, onFulfilled, onRejected} from './my-promise'
+import { Executor, onFulfilled, onRejected } from './my-promise'
 
 function isPromise(value: any): value is PromiseLike<any> {
     return (
@@ -39,9 +39,9 @@ class MyPromise<T> {
 
     // TIPS: 不是promise是异步,而是promise的then方法是异步
     // 供Promise内部调用的resolve方法
-    _resolve(value: T) {
+    private _resolve(value: T) {
         // 如果value传入的是一个 thenable 对象
-        if(isPromise(value)){
+        if (isPromise(value)) {
 
         }
         if (this.status === Status.PENDING) {
@@ -81,7 +81,6 @@ class MyPromise<T> {
             setTimeout(() => {
                 onRejected!(this.reason)
             })
-
         }
         // 如果Promise状态是pending,将成功和失败回调保存起来
         if (this.status === Status.PENDING) {
