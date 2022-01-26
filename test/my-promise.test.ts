@@ -35,7 +35,11 @@ new MyPromise<void>((resolve) => {
         return 'step1'
     })
     .then((res) => {
-        return res + ':' + 'step2'
+        return new MyPromise((resolve) =>{
+            setTimeout(() => {
+                resolve(res + ':' + 'step2')
+            },3000)
+        })
     })
     .then((res) => {
         console.log(res) // step1:step2
