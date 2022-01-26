@@ -82,9 +82,9 @@ function resolvePromise<T>(
 class MyPromise<T> {
     // 开始状态的值
     public status: Status = Status.PENDING
-    // 当前Promise的终值,他一定有值
-    private value!: T
-    // 当前Promise的拒因,可能没有值
+    // 当前Promise的终值
+    private value?: T
+    // 当前Promise的拒因
     private reason?: any
     // 当前Promise成功的回调收集
     private onResolvedCallbacks: (() => void)[] = []
@@ -103,7 +103,7 @@ class MyPromise<T> {
 
     // TIPS: 不是promise是异步,而是promise的then方法是异步
     // 供Promise内部调用的resolve方法
-    private _resolve(value: T) {
+    private _resolve(value?: T) {
         try {
             setTimeout(() => {
                 if (this.status === Status.PENDING) {
@@ -144,7 +144,7 @@ class MyPromise<T> {
          * 处理onFulfilled或onRejected方法没有传或者不是函数的时候,进行值穿透
          * 原理很简单,没有传,就定义一个方法,默认返回上一个then方法的返回值
          */
-        const onFulfilledFn = typeof onFulfilled === 'function' ? onFulfilled : (v: T | TResult1) => v as TResult1
+        const onFulfilledFn = typeof onFulfilled === 'function' ? onFulfilled : (v?: T | TResult1) => v as TResult1
         const onRejectedFn = typeof onRejected === 'function' ? onRejected : (e: any) => {
             throw  e
         }
@@ -195,6 +195,64 @@ class MyPromise<T> {
             }
         })
         return promise2
+    }
+
+    // promise.catch 方法
+    public catch<TResult = never>(onRejected: onRejected<TResult>): MyPromise<T | TResult> {
+        return this.then(null, onRejected)
+    }
+
+    // promise.resolve 方法
+    public resolve<T>(value?: T): MyPromise<T> {
+        // 如果是 Promise，直接返回当前 Promise
+        if (value instanceof MyPromise) {
+            return value
+        }
+        return new MyPromise((resolve) => {
+            resolve(value)
+        })
+    }
+
+    // promise.reject 方法
+    public reject(reason?: any) {
+        return new MyPromise((_, reject) => {
+            reject(reason)
+        })
+    }
+
+    // promise.all 方法
+    public all(values: any) {
+        return new MyPromise((resolve, reject) => {
+            // PromiseLike<T> 对象会跟踪转换为 T
+            const resultArr: T[] = []
+            //  判断是否已经全部完成了
+            const doneArr: boolean[] = []
+            // 获取迭代器对象
+            let iter = values[Symbol.iterator]()
+            // 获取值 {value:xxx, done: false}
+            let cur = iter.next()
+            // 判断迭代器是否迭代完毕同时将最后得到的值放入结果数组中
+            const resolveResult = (value: T, index: number, done?: boolean) => {
+                resultArr[index] = value
+                doneArr[index] = true
+                if (done && doneArr.every((item) => item)) {
+                    resolve(resultArr)
+                }
+            }
+            for (let i = 0; !cur.done; i++) {
+                const value = cur.value
+                doneArr.push(false)
+                cur = iter.next()
+                if (isPromise(value)) {
+                    value.then((value: T) => {
+                        resolveResult(value, i, cur.done)
+                    }, reject)
+                } else {
+                    resolveResult(value, i, cur.done)
+                }
+            }
+        })
+
     }
 }
 
