@@ -1,0 +1,23 @@
+{
+  "name": "my",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test-promise-aplus": "tsc ./test/my-promise-aplus.test.ts && npx promises-aplus-tests ./test/my-promise-aplus.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/yue1123/my-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "promises-aplus-tests": "^2.1.2"
+  }
+}

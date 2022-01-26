@@ -43,6 +43,14 @@ function resolvePromise<T>(
     }
     // 防止多次调用
     let called = false
+    /**
+     * 递归解析的过程（因为可能 promise 中还有 promise） Promise/A+ 2.3.3.3.1
+     * 如果当前then方法返回值是一个thenable对象,则按照promise的方式处理
+     * 这里的理解比较抽象
+     * 如果符合条件,先获取到当前promise的then方法返回的promise的then方法,然后通过调用
+     *  - 第一个参数相当于promise的resolve,调用时会将promise的终值传递过来(resolve方法的实参)
+     *  - 第二个参数相当于promise的reject,调用时会将promise的拒因传递过来(reject方法的实参)
+     */
     if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
         try {
             const then = (x as PromiseLike<T>).then
@@ -50,8 +58,6 @@ function resolvePromise<T>(
                 then.call(x, (y) => {
                     if (called) return
                     called = true
-                    // FIXME: 不理解?
-                    // 递归解析的过程（因为可能 promise 中还有 promise） Promise/A+ 2.3.3.3.1
                     resolvePromise(promise2, y as T | PromiseLike<T>, resolve, reject)
                 }, (e) => {
                     if (called) return
@@ -98,27 +104,35 @@ class MyPromise<T> {
     // TIPS: 不是promise是异步,而是promise的then方法是异步
     // 供Promise内部调用的resolve方法
     private _resolve(value: T) {
-        // 如果value传入的是一个 thenable 对象
-        if (isPromise(value)) {
-
-        }
-        if (this.status === Status.PENDING) {
-            this.status = Status.FULFILLED
-            this.value = value
-            for (let onResolvedCallback of this.onResolvedCallbacks) {
-                onResolvedCallback()
-            }
+        try {
+            setTimeout(() => {
+                if (this.status === Status.PENDING) {
+                    this.status = Status.FULFILLED
+                    this.value = value
+                    for (let onResolvedCallback of this.onResolvedCallbacks) {
+                        onResolvedCallback()
+                    }
+                }
+            })
+        } catch (e) {
+            this._reject(e)
         }
     }
 
     // 供Promise内部调用的reject方法
     private _reject(reason: any) {
-        if (this.status === Status.PENDING) {
-            this.reason = reason
-            this.status = Status.REJECTED
-            for (let onRejectedCallback of this.onRejectedCallbacks) {
-                onRejectedCallback()
-            }
+        try {
+            setTimeout(() => {
+                if (this.status === Status.PENDING) {
+                    this.reason = reason
+                    this.status = Status.REJECTED
+                    for (let onRejectedCallback of this.onRejectedCallbacks) {
+                        onRejectedCallback()
+                    }
+                }
+            })
+        } catch (e) {
+            this._reject(e)
         }
     }
 
@@ -126,13 +140,22 @@ class MyPromise<T> {
         onFulfilled?: onFulfilled<T, TResult1>,
         onRejected?: onRejected<TResult2>
     ): MyPromise<TResult1 | TResult2> {
+        /**
+         * 处理onFulfilled或onRejected方法没有传或者不是函数的时候,进行值穿透
+         * 原理很简单,没有传,就定义一个方法,默认返回上一个then方法的返回值
+         */
+        const onFulfilledFn = typeof onFulfilled === 'function' ? onFulfilled : (v: T | TResult1) => v as TResult1
+        const onRejectedFn = typeof onRejected === 'function' ? onRejected : (e: any) => {
+            throw  e
+        }
+
         const promise2 = new MyPromise<TResult1 | TResult2>((resolve, reject) => {
             // 如果Promise状态是完成态,直接调用
             if (this.status === Status.FULFILLED) {
                 setTimeout(() => {
                     // setTimeout 模拟异步微任务,实际上setTimeout是宏任务
                     try {
-                        const x = onFulfilled!(this.value)
+                        const x = onFulfilledFn!(this.value)
                         resolvePromise(promise2, x, resolve, reject)
                     } catch (e) {
                         reject(e)
@@ -144,7 +167,7 @@ class MyPromise<T> {
                 // setTimeout 模拟异步微任务,实际上setTimeout是宏任务
                 setTimeout(() => {
                     try {
-                        const x = onRejected!(this.reason)
+                        const x = onRejectedFn!(this.reason)
                         resolvePromise(promise2, x, resolve, reject)
                     } catch (e) {
                         reject(e)
@@ -155,7 +178,7 @@ class MyPromise<T> {
             if (this.status === Status.PENDING) {
                 this.onResolvedCallbacks.push(() => {
                     try {
-                        const x = onFulfilled!(this.value)
+                        const x = onFulfilledFn!(this.value)
                         resolvePromise(promise2, x, resolve, reject)
                     } catch (e) {
                         reject(e)
@@ -163,7 +186,7 @@ class MyPromise<T> {
                 })
                 this.onRejectedCallbacks.push(() => {
                     try {
-                        const x = onRejected!(this.reason)
+                        const x = onRejectedFn!(this.reason)
                         resolvePromise(promise2, x, resolve, reject)
                     } catch (e) {
                         reject(e)
