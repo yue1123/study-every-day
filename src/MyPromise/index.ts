@@ -4,7 +4,7 @@ enum Status {
     REJECTED = 'rejected'
 }
 
-import { Executor, onFulfilled, onRejected, Reject, Resolve } from './my-promise'
+import { Executor, onFinally, onFulfilled, onRejected, Reject, Resolve } from './my-promise'
 
 // 判断是不是thenable对象
 function isPromise(value: any): value is PromiseLike<any> {
@@ -81,7 +81,7 @@ function resolvePromise<T>(
 
 class MyPromise<T> {
     // 开始状态的值
-    public status: Status = Status.PENDING
+    private status: Status = Status.PENDING
     // 当前Promise的终值
     private value?: T
     // 当前Promise的拒因
@@ -193,17 +193,19 @@ class MyPromise<T> {
                     }
                 })
             }
+            console.log('this.onResolvedCallbacks', this.onResolvedCallbacks)
+            console.log('this.onRejectedCallbacks', this.onRejectedCallbacks)
         })
         return promise2
     }
 
     // promise.catch 方法
-    public catch<TResult = never>(onRejected: onRejected<TResult>): MyPromise<T | TResult> {
+    public catch<TResult = never>(onRejected: onRejected<TResult>): MyPromise<TResult> {
         return this.then(null, onRejected)
     }
 
     // promise.resolve 方法
-    public resolve<T>(value?: T): MyPromise<T> {
+    static resolve<T>(value?: T): MyPromise<T> {
         // 如果是 Promise，直接返回当前 Promise
         if (value instanceof MyPromise) {
             return value
@@ -214,14 +216,16 @@ class MyPromise<T> {
     }
 
     // promise.reject 方法
-    public reject(reason?: any) {
+    static reject(reason?: any) {
         return new MyPromise((_, reject) => {
             reject(reason)
         })
     }
 
     // promise.all 方法
-    public all(values: any) {
+    static all<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(values: readonly [T1 | PromiseLike<T1>, T2 | PromiseLike<T2>, T3 | PromiseLike<T3>, T4 | PromiseLike<T4>, T5 | PromiseLike<T5>, T6 | PromiseLike<T6>, T7 | PromiseLike<T7>, T8 | PromiseLike<T8>, T9 | PromiseLike<T9>, T10 | PromiseLike<T10>]): MyPromise<[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]>
+    static all<T>(values: Iterable<T | PromiseLike<T>>): MyPromise<T[]>
+    static all<T>(values: Iterable<T | PromiseLike<T>>): MyPromise<T[]> {
         return new MyPromise((resolve, reject) => {
             // PromiseLike<T> 对象会跟踪转换为 T
             const resultArr: T[] = []
@@ -252,7 +256,46 @@ class MyPromise<T> {
                 }
             }
         })
+    }
 
+    static race<T>(values: Iterable<T>): MyPromise<T extends PromiseLike<infer U> ? U : T>
+    static race<T>(
+        values: readonly T[]
+    ): MyPromise<T extends PromiseLike<infer U> ? U : T>
+    static race<T>(values: Iterable<T>): MyPromise<T extends PromiseLike<infer U> ? U : T> {
+        return new MyPromise((resolve, reject) => {
+            const iter = values[Symbol.iterator]()
+            let cur = iter.next()
+            while (!cur.done) {
+                let value = cur.value
+                cur = iter.next()
+
+                if (isPromise(value)) {
+                    value.then(resolve, reject)
+                } else {
+                    resolve(value as T extends PromiseLike<infer U> ? U : T)
+                }
+            }
+        })
+    }
+
+    // promise.finally 方法,无论promise成功或是失败,都会调用
+    public finally<T>(onFinally: onFinally) {
+        return this.then(
+            (value) => {
+                MyPromise.resolve(
+                    // 如果 onFinally 返回的是一个 thenable 也会等返回的 thenable 状态改变才会进行后续的 Promise
+                    typeof onFinally === 'function' ? onFinally() : onFinally
+                ).then(() => value)
+            },
+            (reason) => {
+                MyPromise.resolve(
+                    typeof onFinally === 'function' ? onFinally() : onFinally
+                ).then(() => {
+                    throw reason
+                })
+            }
+        )
     }
 }
 

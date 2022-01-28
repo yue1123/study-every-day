@@ -1,11 +1,11 @@
 {
   "compilerOptions": {
-    "target": "umd",
+    "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext",
-      "es5",
+      "es2015",
       "es2015.symbol",
       "es2015.promise"
     ],

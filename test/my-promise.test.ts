@@ -52,11 +52,38 @@ import MyPromise from '../src/MyPromise/index'
 //     console.log('result', res)
 // })
 // console.log('--------------------')
-new Promise((resolve) => {
-    console.log('resolve之前')
-    resolve(1)
-    console.log('resolve之后')
+// new Promise((resolve) => {
+//     console.log('resolve之前')
+//     resolve(1)
+//     console.log('resolve之后')
+// }).then(res => {
+//     console.log('result', res)
+// })
+// console.log('--------------------')
+
+let d1 = Date.now()
+// setTimeout(() => {
+//     console.log(Date.now() - d1, '---1---')
+// }, 0)
+// MyPromise.all([new MyPromise((resolve) => {
+//     setTimeout(() => {
+//         console.log(Date.now() - d1, '---1---')
+//         resolve(1)
+//     }, 1000)
+// }), ]).then(res => {
+//     console.log(res)
+// })
+
+new MyPromise((resolve) => {
+    setTimeout(() => {
+        console.log(Date.now() - d1, '---2---')
+        resolve(2)
+    }, 1000)
 }).then(res => {
-    console.log('result', res)
+    console.log('then', res)
+}).finally<number>(() => {
+    console.log('finally')
+    return Promise.resolve(1)
+}).then(res => {
+    console.log('finally then', res)
 })
-console.log('--------------------')
