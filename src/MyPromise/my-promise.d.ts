@@ -1,6 +1,7 @@
 import MyPromise from "./index";
 
 export type Resolve<T> = (value?: T) => void
+
 export type Reject = (reason?: any) => void
 
 export type Executor<T> = (resolve: Resolve<T>, reject: Reject) => void
