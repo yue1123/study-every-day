@@ -4,7 +4,7 @@ enum Status {
     REJECTED = 'rejected'
 }
 
-import { Executor, onFulfilled, onRejected, Reject, Resolve } from './my-promise'
+import { Executor, onFinally, onFulfilled, onRejected, Reject, Resolve } from './my-promise'
 
 // 判断是不是thenable对象
 function isPromise(value: any): value is PromiseLike<any> {
@@ -43,6 +43,14 @@ function resolvePromise<T>(
     }
     // 防止多次调用
     let called = false
+    /**
+     * 递归解析的过程（因为可能 promise 中还有 promise） Promise/A+ 2.3.3.3.1
+     * 如果当前then方法返回值是一个thenable对象,则按照promise的方式处理
+     * 这里的理解比较抽象
+     * 如果符合条件,先获取到当前promise的then方法返回的promise的then方法,然后通过调用
+     *  - 第一个参数相当于promise的resolve,调用时会将promise的终值传递过来(resolve方法的实参)
+     *  - 第二个参数相当于promise的reject,调用时会将promise的拒因传递过来(reject方法的实参)
+     */
     if ((typeof x === 'object' && x !== null) || typeof x === 'function') {
         try {
             const then = (x as PromiseLike<T>).then
@@ -50,8 +58,6 @@ function resolvePromise<T>(
                 then.call(x, (y) => {
                     if (called) return
                     called = true
-                    // FIXME: 不理解?
-                    // 递归解析的过程（因为可能 promise 中还有 promise） Promise/A+ 2.3.3.3.1
                     resolvePromise(promise2, y as T | PromiseLike<T>, resolve, reject)
                 }, (e) => {
                     if (called) return
@@ -75,10 +81,10 @@ function resolvePromise<T>(
 
 class MyPromise<T> {
     // 开始状态的值
-    public status: Status = Status.PENDING
-    // 当前Promise的终值,他一定有值
-    private value!: T
-    // 当前Promise的拒因,可能没有值
+    private status: Status = Status.PENDING
+    // 当前Promise的终值
+    private value?: T
+    // 当前Promise的拒因
     private reason?: any
     // 当前Promise成功的回调收集
     private onResolvedCallbacks: (() => void)[] = []
@@ -97,28 +103,36 @@ class MyPromise<T> {
 
     // TIPS: 不是promise是异步,而是promise的then方法是异步
     // 供Promise内部调用的resolve方法
-    private _resolve(value: T) {
-        // 如果value传入的是一个 thenable 对象
-        if (isPromise(value)) {
-
-        }
-        if (this.status === Status.PENDING) {
-            this.status = Status.FULFILLED
-            this.value = value
-            for (let onResolvedCallback of this.onResolvedCallbacks) {
-                onResolvedCallback()
-            }
+    private _resolve(value?: T) {
+        try {
+            setTimeout(() => {
+                if (this.status === Status.PENDING) {
+                    this.status = Status.FULFILLED
+                    this.value = value
+                    for (let onResolvedCallback of this.onResolvedCallbacks) {
+                        onResolvedCallback()
+                    }
+                }
+            })
+        } catch (e) {
+            this._reject(e)
         }
     }
 
     // 供Promise内部调用的reject方法
     private _reject(reason: any) {
-        if (this.status === Status.PENDING) {
-            this.reason = reason
-            this.status = Status.REJECTED
-            for (let onRejectedCallback of this.onRejectedCallbacks) {
-                onRejectedCallback()
-            }
+        try {
+            setTimeout(() => {
+                if (this.status === Status.PENDING) {
+                    this.reason = reason
+                    this.status = Status.REJECTED
+                    for (let onRejectedCallback of this.onRejectedCallbacks) {
+                        onRejectedCallback()
+                    }
+                }
+            })
+        } catch (e) {
+            this._reject(e)
         }
     }
 
@@ -126,13 +140,22 @@ class MyPromise<T> {
         onFulfilled?: onFulfilled<T, TResult1>,
         onRejected?: onRejected<TResult2>
     ): MyPromise<TResult1 | TResult2> {
+        /**
+         * 处理onFulfilled或onRejected方法没有传或者不是函数的时候,进行值穿透
+         * 原理很简单,没有传,就定义一个方法,默认返回上一个then方法的返回值
+         */
+        const onFulfilledFn = typeof onFulfilled === 'function' ? onFulfilled : (v?: T | TResult1) => v as TResult1
+        const onRejectedFn = typeof onRejected === 'function' ? onRejected : (e: any) => {
+            throw  e
+        }
+
         const promise2 = new MyPromise<TResult1 | TResult2>((resolve, reject) => {
             // 如果Promise状态是完成态,直接调用
             if (this.status === Status.FULFILLED) {
                 setTimeout(() => {
                     // setTimeout 模拟异步微任务,实际上setTimeout是宏任务
                     try {
-                        const x = onFulfilled!(this.value)
+                        const x = onFulfilledFn!(this.value)
                         resolvePromise(promise2, x, resolve, reject)
                     } catch (e) {
                         reject(e)
@@ -144,7 +167,7 @@ class MyPromise<T> {
                 // setTimeout 模拟异步微任务,实际上setTimeout是宏任务
                 setTimeout(() => {
                     try {
-                        const x = onRejected!(this.reason)
+                        const x = onRejectedFn!(this.reason)
                         resolvePromise(promise2, x, resolve, reject)
                     } catch (e) {
                         reject(e)
@@ -155,7 +178,7 @@ class MyPromise<T> {
             if (this.status === Status.PENDING) {
                 this.onResolvedCallbacks.push(() => {
                     try {
-                        const x = onFulfilled!(this.value)
+                        const x = onFulfilledFn!(this.value)
                         resolvePromise(promise2, x, resolve, reject)
                     } catch (e) {
                         reject(e)
@@ -163,15 +186,116 @@ class MyPromise<T> {
                 })
                 this.onRejectedCallbacks.push(() => {
                     try {
-                        const x = onRejected!(this.reason)
+                        const x = onRejectedFn!(this.reason)
                         resolvePromise(promise2, x, resolve, reject)
                     } catch (e) {
                         reject(e)
                     }
                 })
             }
+            console.log('this.onResolvedCallbacks', this.onResolvedCallbacks)
+            console.log('this.onRejectedCallbacks', this.onRejectedCallbacks)
         })
         return promise2
+    }
+
+    // promise.catch 方法
+    public catch<TResult = never>(onRejected: onRejected<TResult>): MyPromise<TResult> {
+        return this.then(null, onRejected)
+    }
+
+    // promise.resolve 方法
+    static resolve<T>(value?: T): MyPromise<T> {
+        // 如果是 Promise，直接返回当前 Promise
+        if (value instanceof MyPromise) {
+            return value
+        }
+        return new MyPromise((resolve) => {
+            resolve(value)
+        })
+    }
+
+    // promise.reject 方法
+    static reject(reason?: any) {
+        return new MyPromise((_, reject) => {
+            reject(reason)
+        })
+    }
+
+    // promise.all 方法
+    static all<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(values: readonly [T1 | PromiseLike<T1>, T2 | PromiseLike<T2>, T3 | PromiseLike<T3>, T4 | PromiseLike<T4>, T5 | PromiseLike<T5>, T6 | PromiseLike<T6>, T7 | PromiseLike<T7>, T8 | PromiseLike<T8>, T9 | PromiseLike<T9>, T10 | PromiseLike<T10>]): MyPromise<[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]>
+    static all<T>(values: Iterable<T | PromiseLike<T>>): MyPromise<T[]>
+    static all<T>(values: Iterable<T | PromiseLike<T>>): MyPromise<T[]> {
+        return new MyPromise((resolve, reject) => {
+            // PromiseLike<T> 对象会跟踪转换为 T
+            const resultArr: T[] = []
+            //  判断是否已经全部完成了
+            const doneArr: boolean[] = []
+            // 获取迭代器对象
+            let iter = values[Symbol.iterator]()
+            // 获取值 {value:xxx, done: false}
+            let cur = iter.next()
+            // 判断迭代器是否迭代完毕同时将最后得到的值放入结果数组中
+            const resolveResult = (value: T, index: number, done?: boolean) => {
+                resultArr[index] = value
+                doneArr[index] = true
+                if (done && doneArr.every((item) => item)) {
+                    resolve(resultArr)
+                }
+            }
+            for (let i = 0; !cur.done; i++) {
+                const value = cur.value
+                doneArr.push(false)
+                cur = iter.next()
+                if (isPromise(value)) {
+                    value.then((value: T) => {
+                        resolveResult(value, i, cur.done)
+                    }, reject)
+                } else {
+                    resolveResult(value, i, cur.done)
+                }
+            }
+        })
+    }
+
+    static race<T>(values: Iterable<T>): MyPromise<T extends PromiseLike<infer U> ? U : T>
+    static race<T>(
+        values: readonly T[]
+    ): MyPromise<T extends PromiseLike<infer U> ? U : T>
+    static race<T>(values: Iterable<T>): MyPromise<T extends PromiseLike<infer U> ? U : T> {
+        return new MyPromise((resolve, reject) => {
+            const iter = values[Symbol.iterator]()
+            let cur = iter.next()
+            while (!cur.done) {
+                let value = cur.value
+                cur = iter.next()
+
+                if (isPromise(value)) {
+                    value.then(resolve, reject)
+                } else {
+                    resolve(value as T extends PromiseLike<infer U> ? U : T)
+                }
+            }
+        })
+    }
+
+    // promise.finally 方法,无论promise成功或是失败,都会调用
+    public finally<T>(onFinally: onFinally) {
+        return this.then(
+            (value) => {
+                MyPromise.resolve(
+                    // 如果 onFinally 返回的是一个 thenable 也会等返回的 thenable 状态改变才会进行后续的 Promise
+                    typeof onFinally === 'function' ? onFinally() : onFinally
+                ).then(() => value)
+            },
+            (reason) => {
+                MyPromise.resolve(
+                    typeof onFinally === 'function' ? onFinally() : onFinally
+                ).then(() => {
+                    throw reason
+                })
+            }
+        )
     }
 }
 
