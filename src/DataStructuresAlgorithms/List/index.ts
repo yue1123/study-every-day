@@ -37,9 +37,12 @@ export default class List<T> {
 	/**
 	 * insert
 	 * 列表中插入元素
+	 * @param element 插入的元素
+	 * @param before 前一个元素是谁
+	 * @returns {boolean}  true:表示插入成功 false:表示插入失败
 	 */
-	public insert(element: T, after: T): boolean {
-		const pos = this._find(after)
+	public insert(element: T, before: T): boolean {
+		const pos = this._find(before)
 		if (pos > -1) {
 			this.dataStore.splice(pos + 1, 0, element)
 			++this.listSize
@@ -123,10 +126,18 @@ export default class List<T> {
 		return this.pos
 	}
 	/**
+	 * contain
+	 * 返回列表是否包含某个元素
+	 */
+	public contain(element: T): boolean {
+		const pos = this._find(element)
+		return pos > -1 ? true : false
+	}
+	/**
 	 * toString
 	 * 返回列表的字符串形式
 	 */
-	public toString(): T[] {
-		return this.dataStore
+	public toString(): string {
+		return this.dataStore.join(',')
 	}
 }
