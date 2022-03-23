@@ -8,7 +8,6 @@
 	},
 	"scripts": {
 		"test-promise-aplus": "tsc ./test/my-promise-aplus.test.ts && npx promises-aplus-tests ./test/my-promise-aplus.test.js",
-		"push": "git push -f gitee github",
 		"test": "jest"
 	},
 	"repository": {
