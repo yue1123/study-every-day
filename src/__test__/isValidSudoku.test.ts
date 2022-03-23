@@ -1,5 +1,4 @@
-import { sign } from 'crypto'
-import isValidSudoku from '../leetcode/数独'
+import isValidSudoku from '../leetcode/isValidSudoku'
 
 test('有效数独', () => {
 	expect(

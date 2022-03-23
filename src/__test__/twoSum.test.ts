@@ -1,4 +1,4 @@
-import { twoSum3 } from '../leetcode/两数之和/index'
+import { twoSum3 } from '../leetcode/twoSum/index'
 
 const tests = [
 	{
