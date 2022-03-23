@@ -1,5 +1,3 @@
-import MyPromise from "./index";
-
 export type Resolve<T> = (value?: T) => void
 
 export type Reject = (reason?: any) => void
@@ -25,7 +23,7 @@ export interface MyPromise {
 
     catch<TResult = never>(onRejected?: onRejected<TResult>): Promise<TResult>
 
-    finally(onFinally?: (() => void) | undefined | null): Promise<T>
+    finally<T>(onFinally?: (() => void) | undefined | null): Promise<T>
 
     all<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(values: readonly [T1 | PromiseLike<T1>, T2 | PromiseLike<T2>, T3 | PromiseLike<T3>, T4 | PromiseLike<T4>, T5 | PromiseLike<T5>, T6 | PromiseLike<T6>, T7 | PromiseLike<T7>, T8 | PromiseLike<T8>, T9 | PromiseLike<T9>, T10 | PromiseLike<T10>]): Promise<[T1, T2, T3, T4, T5, T6, T7, T8, T9, T10]>
 

@@ -29,4 +29,19 @@ var isValidSudoku = function (board: string[][]) {
 	return true
 }
 
+var isValidSudoku1 = function (board: string[][]): boolean {
+	// 行
+	let cell = {}
+	// 列
+	let col = {}
+	// 3x3九宫格
+	let box = {}
+	for (let i = 0; i < 9; i++) {
+		for (let j = 0; j < 9; j++) {
+      
+    }
+	}
+	return true
+}
+
 export default isValidSudoku

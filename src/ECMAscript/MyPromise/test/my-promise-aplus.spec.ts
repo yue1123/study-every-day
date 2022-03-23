@@ -1,5 +1,5 @@
 // 在文件末尾加上
-import MyPromise from "../MyPromise";
+import MyPromise from "../index";
 // 忽略 typescript 校验
 // @ts-ignore
 MyPromise.defer = MyPromise.deferred = function () {
