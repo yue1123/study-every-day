@@ -26,7 +26,6 @@ function compile(template: string) {
 
     return output;
   })`
-
 	return script
 }
 let parse = eval(compile(template))
