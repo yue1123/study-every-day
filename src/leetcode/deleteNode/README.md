@@ -6,7 +6,7 @@
 
 
 ## 示例 1：
-
+![https://assets.leetcode.com/uploads/2020/10/03/remove_ex1.jpg](https://assets.leetcode.com/uploads/2020/10/03/remove_ex1.jpg)
 ```txt
 输入：head = [4,5,1,9], node = 5
 输出：[4,1,9]
