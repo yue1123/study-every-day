@@ -31,5 +31,11 @@
 
 
 ## 题解
+### 栈
+
 利用栈的先入后出,反转链表
 先遍历链表入栈,在遍历栈,构成新的链表
+
+### 双链表
+![https://mmbiz.qpic.cn/mmbiz_png/PGmTibd8KQBHac4ba8uZgNN7pmWsxcqib9IEdRXXIfsklU8STcMichyDurliaYmt0XqwmNNTK2OEeIZCjARpFXt4Vw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1](https://mmbiz.qpic.cn/mmbiz_png/PGmTibd8KQBHac4ba8uZgNN7pmWsxcqib9IEdRXXIfsklU8STcMichyDurliaYmt0XqwmNNTK2OEeIZCjARpFXt4Vw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)
+![https://mmbiz.qpic.cn/mmbiz_png/PGmTibd8KQBHac4ba8uZgNN7pmWsxcqib9ibF21VvsZZWlsibTHIGrvvpPQe0fc8XTC6YicZTqicV9icbYrHOGuOCR9BA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1](https://mmbiz.qpic.cn/mmbiz_png/PGmTibd8KQBHac4ba8uZgNN7pmWsxcqib9ibF21VvsZZWlsibTHIGrvvpPQe0fc8XTC6YicZTqicV9icbYrHOGuOCR9BA/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1)

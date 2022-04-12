@@ -34,6 +34,18 @@ var reverseList = function (head: ListNode) {
 	return stack.pop()
 }
 
+function reverse(head: ListNode) {
+	let prev: ListNode | null = null
+	while (head != null) {
+		let next: ListNode | null = head.next!
+		head.next = prev
+		prev = head
+		head = next
+	}
+	return prev
+}
+
 const linkedList = generateListNodeByArr([1, 2, 3, 4, 5])!
 
-console.log(reverseList(linkedList))
+// console.log(reverseList(linkedList))
+console.log(JSON.stringify(reverse(linkedList)))
