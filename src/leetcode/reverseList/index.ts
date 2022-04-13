@@ -45,7 +45,7 @@ function reverse(head: ListNode) {
 	return prev
 }
 
-const linkedList = generateListNodeByArr([1, 2, 3, 4, 5])!
+const linkedList1 = generateListNodeByArr([1, 2, 3, 4, 5])!
 
 // console.log(reverseList(linkedList))
-console.log(JSON.stringify(reverse(linkedList)))
+console.log(JSON.stringify(reverse(linkedList1)))
