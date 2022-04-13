@@ -1,4 +1,4 @@
-import MyPromise from '../MyPromise/index'
+import MyPromise from '../index'
 //
 // const promise = new MyPromise<boolean>((resolve, reject) => {
 //     setTimeout(() => {
