@@ -1,4 +1,4 @@
-import plusOne from '../leetcode/加一'
+import plusOne from '../leetcode/plusOne'
 
 test('正常加一', () => {
 	expect(plusOne([1, 2, 3])).toEqual([1, 2, 4])
