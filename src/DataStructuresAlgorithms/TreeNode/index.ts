@@ -41,8 +41,8 @@ export function generateTreeNodeByArray(arr: any[]): TreeNode {
 	let treeNode = arr[0]
 	while (i < len) {
 		if (arr[i]) {
-			arr[i].setLeft(arr[2 * i + 1])
-			arr[i].setRight(arr[2 * i + 2])
+			arr[i].setLeft(arr[2 * i + 1] || null)
+			arr[i].setRight(arr[2 * i + 2] || null)
 		}
 		i++
 	}

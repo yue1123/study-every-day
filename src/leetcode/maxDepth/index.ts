@@ -1,4 +1,3 @@
-import { Tree } from 'istanbul-lib-report'
 import { TreeNode, generateTreeNodeByArray } from '../../DataStructuresAlgorithms/TreeNode'
 /**
  * Definition for a binary tree node.
@@ -36,3 +35,5 @@ let treeNode = generateTreeNodeByArray([
 	18
 ])
 console.log(maxDepth(treeNode))
+
+
