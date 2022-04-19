@@ -1,6 +1,36 @@
 ## 学习代码记录
+每天进步一点点,保持github常绿
 
--   leetCode 每日算法题 
--   数据结构预算法
--   手写 ECMAscript 方法
--   Typescript
+- [angular 参数注入实现](./src/angularParamsInject)
+- [DataStructuresAlgorithms](./src/DataStructuresAlgorithms)
+  - [LinkedList](./src/DataStructuresAlgorithms/LinkedList)
+  - [List](./src/DataStructuresAlgorithms/List)
+  - [Stack](./src/DataStructuresAlgorithms/Stack)
+  - [TreeNode](./src/DataStructuresAlgorithms/TreeNode)
+- [手写 ECMAscript 方法](./src/ECMAscript)
+  - [MyPromise](./src/ECMAscript/MyPromise)
+  - [string](./src/ECMAscript/string)
+- [leetCode 每日算法题](./src/leetcode)
+  - [deleteNode](./src/leetcode/deleteNode)
+  - [firstUniqChar](./src/leetcode/firstUniqChar)
+  - [hasCycle](./src/leetcode/hasCycle)
+  - [intersect](./src/leetcode/intersect)
+  - [isAnagram](./src/leetcode/isAnagram)
+  - [isPalindrome](./src/leetcode/isPalindrome)
+  - [isPalindromeList](./src/leetcode/isPalindromeList)
+  - [isSymmetric](./src/leetcode/isSymmetric)
+  - [isValidBST](./src/leetcode/isValidBST)
+  - [isValidSudoku](./src/leetcode/isValidSudoku)
+  - [longestCommonPrefix](./src/leetcode/longestCommonPrefix)
+  - [maxDepth](./src/leetcode/maxDepth)
+  - [mergeTwoLists](./src/leetcode/mergeTwoLists)
+  - [moveZeroes](./src/leetcode/moveZeroes)
+  - [plusOne](./src/leetcode/plusOne)
+  - [removeNthFromEnd](./src/leetcode/removeNthFromEnd)
+  - [reverseList](./src/leetcode/reverseList)
+  - [reverseNumber](./src/leetcode/reverseNumber)
+  - [reverseString](./src/leetcode/reverseString)
+  - [rotate](./src/leetcode/rotate)
+  - [strStr](./src/leetcode/strStr)
+  - [twoSum](./src/leetcode/twoSum)
+- [Typescript](./src/Typescript)
