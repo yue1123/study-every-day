@@ -8,6 +8,7 @@
 	},
 	"scripts": {
 		"test-promise-aplus": "tsc ./test/my-promise-aplus.test.ts && npx promises-aplus-tests ./test/my-promise-aplus.test.js",
+		"genToc": "node ./bin/genTocByDir.js",
 		"test": "jest"
 	},
 	"repository": {
