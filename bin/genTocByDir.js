@@ -50,7 +50,7 @@ function genMarkdown(data, deep = 1) {
 
 const mdText = 
 `## 学习代码记录
-每天进步一点点,保持github常绿
+每天进步一点点,保持github常绿🍏
 
 ${genMarkdown(data)}`
 
