@@ -1,4 +1,4 @@
-import { TreeNode } from '../../DataStructuresAlgorithms/TreeNode'
+import { TreeNode, generateTreeNodeByArray } from '../../DataStructuresAlgorithms/TreeNode'
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
@@ -24,7 +24,7 @@ var levelOrder = function (root: TreeNode | null) {
 		let levelNum = queue.length
 		let subList: any = []
 		for (let i = 0; i < levelNum; i++) {
-			let node: any = queue.pop()!
+			let node: any = queue.shift()!
 			subList.push(node.val)
 			if (node.left != null) queue.push(node.left)
 			if (node.right != null) queue.push(node.right)
@@ -35,3 +35,6 @@ var levelOrder = function (root: TreeNode | null) {
 }
 
 export default levelOrder
+
+const treeNode = generateTreeNodeByArray([3, 9, 20, null, null, 15, 7])
+console.log(levelOrder(treeNode))

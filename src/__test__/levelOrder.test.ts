@@ -3,7 +3,7 @@ import levelOrder from '../leetcode/levelOrder'
 
 test('多层',() => {
   const treeNode = generateTreeNodeByArray([3, 9, 20, null, null, 15, 7])
-  expect(levelOrder(treeNode)).toStrictEqual([[3], [20, 7], [15, 9]])
+  expect(levelOrder(treeNode)).toStrictEqual([[3], [9, 20], [15, 7]])
 }) 
 
 test('单个节点',() =>{
