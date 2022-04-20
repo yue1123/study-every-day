@@ -29,6 +29,19 @@ function readdirDeep(p) {
 	}
 	return rootData
 }
+
+function getReadmeTitle(path) {
+	let _path = `${path}/README.md`
+	if (fs.existsSync(_path)) {
+		let mdStr = fs.readFileSync(_path)
+		let res = /#\W.*/.exec(mdStr)
+		if (res && res[0]) {
+			return res[0].replace(/#/g, '')
+		}
+	}
+	return ''
+}
+
 const data = readdirDeep('src')
 
 // fs.writeFileSync('./test.json', JSON.stringify(data))
@@ -40,7 +53,11 @@ function genMarkdown(data, deep = 1) {
 	for (const item of _data) {
 		text += dirMapText[item.path]
 			? mdTemplate(dirMapText[item.path], item.path, new Array(deep).join('  '))
-			: mdTemplate(item.text, item.path, new Array(deep).join('  '))
+			: mdTemplate(
+					`${item.text} ${getReadmeTitle(item.path)}`,
+					item.path,
+					new Array(deep).join('  ')
+			  )
 		if (item.children) {
 			text += genMarkdown(item, deep + 1)
 		}
@@ -48,8 +65,7 @@ function genMarkdown(data, deep = 1) {
 	return text
 }
 
-const mdText = 
-`## 学习代码记录
+const mdText = `## 学习代码记录
 每天进步一点点,保持github常绿🍏
 
 ${genMarkdown(data)}`
