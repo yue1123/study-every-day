@@ -19,6 +19,7 @@
   - [isPalindrome  验证回文串](./src/leetcode/isPalindrome)
   - [isPalindromeList  回文链表](./src/leetcode/isPalindromeList)
   - [isSymmetric  对称二叉树](./src/leetcode/isSymmetric)
+  - [isValidBrackets  有效的括号](./src/leetcode/isValidBrackets)
   - [isValidBST  验证二叉搜索树](./src/leetcode/isValidBST)
   - [isValidSudoku  有效的数独](./src/leetcode/isValidSudoku)
   - [levelOrder  二叉树的层序遍历](./src/leetcode/levelOrder)
