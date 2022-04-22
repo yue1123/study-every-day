@@ -33,6 +33,7 @@
   - [reverseNumber  整数反转](./src/leetcode/reverseNumber)
   - [reverseString  反转字符串](./src/leetcode/reverseString)
   - [rotate  旋转图像](./src/leetcode/rotate)
+  - [searchInsert  搜索插入位置](./src/leetcode/searchInsert)
   - [strStr  实现 strStr()](./src/leetcode/strStr)
   - [twoSum  两数之和](./src/leetcode/twoSum)
 - [Typescript](./src/Typescript)

@@ -22,4 +22,3 @@ var isValidBrackets = function (s: string) {
 }
 
 export default isValidBrackets
-// console.log(isValidBrackets('()'))
