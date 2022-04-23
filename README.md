@@ -9,7 +9,7 @@
 - [手写 ECMAscript 方法](./src/ECMAscript)
   - [MyPromise  术语](./src/ECMAscript/MyPromise)
   - [string ](./src/ECMAscript/string)
-- [Promise ](./src/Promise)
+- [Promise  Promise 八股文](./src/Promise)
 - [Typescript](./src/Typescript)
 - [angular 参数注入实现](./src/angularParamsInject)
 - [leetCode 每日算法题](./src/leetcode)
