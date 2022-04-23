@@ -1,5 +1,3 @@
-import generate from '@babel/generator'
-
 export class ListNode {
 	val: any
 	next: ListNode | null | undefined
