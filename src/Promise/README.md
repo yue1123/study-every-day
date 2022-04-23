@@ -24,6 +24,13 @@
 
 通关标准，能够给出答案，并且给出合理的解释。【为什么给出这个答案？】
 
+## 牢记
+**不是Promise是异步的,而是Promise.then方法的执行是异步的**
+
+
+## async / await 
+> [https://segmentfault.com/a/1190000011296839](https://segmentfault.com/a/1190000011296839)
+> [https://segmentfault.com/a/1190000007535316](https://segmentfault.com/a/1190000007535316)
 ## 01
 
 难易程度：⭐⭐⭐
@@ -40,6 +47,7 @@ Promise.resolve(1)
 	.then((res) => {
 		console.log(res)
 	})
+// 1 2
 ```
 
 ## 02
@@ -56,6 +64,7 @@ promise.then(() => {
 	console.log(3)
 })
 console.log(4)
+// 1 2 4 3
 ```
 
 ## 03
@@ -79,6 +88,10 @@ setTimeout(() => {
 	console.log('promise1', promise1)
 	console.log('promise2', promise2)
 }, 2000)
+
+// promise1 Promise { <pending> }
+// promise2 Promise { <pending> }
+// new Error('error!!!')  // 抛出错误,后续代码不会执行
 ```
 
 ## 04
@@ -95,6 +108,7 @@ new Promise((resolve) => {
 	console.log(num)
 })
 console.log(2)
+// 1 2 4 3 5
 ```
 
 ## 05
@@ -116,6 +130,9 @@ promise.then((res) => {
 promise.then((res) => {
 	console.log(res, Date.now() - start)
 })
+// once
+// success 1000+
+// success 1000+
 ```
 
 ## 06
@@ -133,6 +150,7 @@ Promise.resolve()
 	.catch((err) => {
 		console.log('catch: ', err)
 	})
+// then:  Error: error!!!
 ```
 
 ## 07
@@ -144,6 +162,7 @@ const promise = Promise.resolve().then(() => {
 	return promise
 })
 promise.catch(console.error)
+// [TypeError: Chaining cycle detected for promise #<Promise>]
 ```
 
 ## 08
@@ -170,6 +189,7 @@ Promise.resolve()
 	.catch(function fail2(e) {
 		console.error('fail2: ', e)
 	})
+// fail2:  Error: error
 ```
 
 变种后
@@ -190,6 +210,7 @@ Promise.resolve()
 			console.error('fail2: ', e)
 		}
 	)
+// fail2:  Error: error
 ```
 
 ## 10
@@ -203,10 +224,17 @@ process.nextTick(() => {
 Promise.resolve().then(() => {
 	console.log('then')
 })
+
+// 宏任务
 setImmediate(() => {
 	console.log('setImmediate')
 })
 console.log('end')
+
+// end
+// nextTick
+// then
+// setImmediate
 ```
 
 ## 11
@@ -235,6 +263,7 @@ first().then((arg) => {
 	console.log(arg)
 })
 console.log(4)
+// 3 7 4 1 2 5
 ```
 
 ## 12
@@ -247,18 +276,23 @@ var p = new Promise((resolve, reject) => {
 })
 p.catch((error) => console.log(error.message))
 p.catch((error) => console.log(error.message))
+// The Fails!
+// The Fails!
 ```
 
 ## 13
 
 难易程度：⭐⭐⭐
 
+> 不理解为什么报错
+
 ```js
 var p = new Promise((resolve, reject) => {
 	return Promise.reject(Error('The Fails!'))
 })
-p.catch((error) => console.log(error.message))
-p.catch((error) => console.log(error.message))
+p.catch((error) => console.log(error.message, '1111')).catch((error) => console.log(error.message, '123123'))
+p.catch((error) => console.log(error.message, '1111')).catch((error) => console.log(error.message, '123123'))
+// 报错
 ```
 
 ## 14
@@ -269,8 +303,9 @@ p.catch((error) => console.log(error.message))
 var p = new Promise((resolve, reject) => {
 	reject(Error('The Fails!'))
 })
-	.catch((error) => console.log(error))
+	.catch((error) => console.log('error:', error))
 	.then((error) => console.log(error))
+// error: Error: The Fails!
 ```
 
 ## 15
@@ -288,6 +323,7 @@ new Promise((resolve, reject) => {
 		return 'actually, that worked'
 	})
 	.catch((error) => console.log(error.message))
+// 没有任何输出, 第一个then抛出一个错误,会被第一个catch捕获,但是他return了一个字符串,属于是resolve的返回值,所以第二个catch不会执行
 ```
 
 ## 16
@@ -304,6 +340,8 @@ Promise.resolve('Success!')
 		return data
 	})
 	.then(console.log)
+// SUCCESS!
+// SUCCESS!
 ```
 
 ## 17
@@ -322,6 +360,7 @@ Promise.resolve('Success!')
 		throw Error('The fails!')
 	})
 	.catch((error) => console.log(error.message))
+// The fails!
 ```
 
 ## 18
@@ -350,6 +389,7 @@ first().then((arg) => {
 	console.log(arg)
 })
 console.log(4)
+// 3 7 4 1 2 5
 ```
 
 ## 19
@@ -377,4 +417,5 @@ setTimeout(() => {
 
 async1()
 console.log(6)
+// 1 2 6 4 3 5
 ```
