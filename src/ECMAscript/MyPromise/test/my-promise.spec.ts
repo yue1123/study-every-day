@@ -87,3 +87,5 @@ new MyPromise((resolve) => {
 }).then(res => {
     console.log('finally then', res)
 })
+
+MyPromise.reject(Error('The Fails!'))
