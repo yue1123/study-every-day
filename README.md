@@ -1,6 +1,7 @@
 ## 学习代码记录
 每天进步一点点,保持github常绿🍏
 
+- [angular 参数注入实现](./src/angularParamsInject)
 - [DataStructuresAlgorithms ](./src/DataStructuresAlgorithms)
   - [LinkedList ](./src/DataStructuresAlgorithms/LinkedList)
   - [List  列表](./src/DataStructuresAlgorithms/List)
@@ -9,10 +10,8 @@
 - [手写 ECMAscript 方法](./src/ECMAscript)
   - [MyPromise  术语](./src/ECMAscript/MyPromise)
   - [string ](./src/ECMAscript/string)
-- [Promise  Promise 八股文](./src/Promise)
-- [Typescript](./src/Typescript)
-- [angular 参数注入实现](./src/angularParamsInject)
 - [leetCode 每日算法题](./src/leetcode)
+  - [deleteDuplicates  删除排序链表中的重复元素](./src/leetcode/deleteDuplicates)
   - [deleteNode  删除链表中的节点](./src/leetcode/deleteNode)
   - [firstUniqChar  字符串中的第一个唯一字符](./src/leetcode/firstUniqChar)
   - [hasCycle  环形链表](./src/leetcode/hasCycle)
@@ -21,8 +20,8 @@
   - [isPalindrome  验证回文串](./src/leetcode/isPalindrome)
   - [isPalindromeList  回文链表](./src/leetcode/isPalindromeList)
   - [isSymmetric  对称二叉树](./src/leetcode/isSymmetric)
-  - [isValidBST  验证二叉搜索树](./src/leetcode/isValidBST)
   - [isValidBrackets  有效的括号](./src/leetcode/isValidBrackets)
+  - [isValidBST  验证二叉搜索树](./src/leetcode/isValidBST)
   - [isValidSudoku  有效的数独](./src/leetcode/isValidSudoku)
   - [lengthOfLastWord  最后一个单词的长度](./src/leetcode/lengthOfLastWord)
   - [levelOrder  二叉树的层序遍历](./src/leetcode/levelOrder)
@@ -39,3 +38,5 @@
   - [searchInsert  搜索插入位置](./src/leetcode/searchInsert)
   - [strStr  实现 strStr()](./src/leetcode/strStr)
   - [twoSum  两数之和](./src/leetcode/twoSum)
+- [Promise  Promise 八股文](./src/Promise)
+- [Typescript](./src/Typescript)
