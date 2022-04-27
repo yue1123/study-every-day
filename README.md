@@ -27,6 +27,7 @@
   - [levelOrder  二叉树的层序遍历](./src/leetcode/levelOrder)
   - [longestCommonPrefix  最长公共前缀](./src/leetcode/longestCommonPrefix)
   - [maxDepth  二叉树的最大深度](./src/leetcode/maxDepth)
+  - [mergeTwoArray  合并两个有序数组](./src/leetcode/mergeTwoArray)
   - [mergeTwoLists  合并两个有序链表](./src/leetcode/mergeTwoLists)
   - [moveZeroes  移动零](./src/leetcode/moveZeroes)
   - [plusOne  加一](./src/leetcode/plusOne)
