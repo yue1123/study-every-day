@@ -12,6 +12,7 @@
   - [string ](./src/ECMAscript/string)
 - [leetCode 每日算法题](./src/leetcode)
   - [addStrings  两字符串相加](./src/leetcode/addStrings)
+  - [climbStairs  爬楼梯](./src/leetcode/climbStairs)
   - [deleteDuplicates  删除排序链表中的重复元素](./src/leetcode/deleteDuplicates)
   - [deleteNode  删除链表中的节点](./src/leetcode/deleteNode)
   - [firstUniqChar  字符串中的第一个唯一字符](./src/leetcode/firstUniqChar)
