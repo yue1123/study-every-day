@@ -28,6 +28,7 @@
   - [lengthOfLastWord  最后一个单词的长度](./src/leetcode/lengthOfLastWord)
   - [levelOrder  二叉树的层序遍历](./src/leetcode/levelOrder)
   - [longestCommonPrefix  最长公共前缀](./src/leetcode/longestCommonPrefix)
+  - [majorityElement  多数元素](./src/leetcode/majorityElement)
   - [maxDepth  二叉树的最大深度](./src/leetcode/maxDepth)
   - [mergeTwoArray  合并两个有序数组](./src/leetcode/mergeTwoArray)
   - [mergeTwoLists  合并两个有序链表](./src/leetcode/mergeTwoLists)
