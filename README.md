@@ -30,6 +30,7 @@
   - [longestCommonPrefix  最长公共前缀](./src/leetcode/longestCommonPrefix)
   - [majorityElement  多数元素](./src/leetcode/majorityElement)
   - [maxDepth  二叉树的最大深度](./src/leetcode/maxDepth)
+  - [maxSubArray  最大子数组和](./src/leetcode/maxSubArray)
   - [mergeTwoArray  合并两个有序数组](./src/leetcode/mergeTwoArray)
   - [mergeTwoLists  合并两个有序链表](./src/leetcode/mergeTwoLists)
   - [moveZeroes  移动零](./src/leetcode/moveZeroes)
