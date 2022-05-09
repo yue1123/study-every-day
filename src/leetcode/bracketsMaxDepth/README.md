@@ -1,4 +1,5 @@
 # 括号的最大嵌套深度
+> 题目链接: [https://leetcode.cn/problems/maximum-nesting-depth-of-the-parentheses/](https://leetcode.cn/problems/maximum-nesting-depth-of-the-parentheses/)
 如果字符串满足以下条件之一，则可以称之为 有效括号字符串（valid parentheses string，可以简写为 VPS）：
 
 字符串是一个空字符串 ""，或者是一个不为 "(" 或 ")" 的单字符。
@@ -38,3 +39,4 @@ depth("") = 0
 ## 解题思路
 遍历括号
 遇到正括号cur++,反括号cur--,减之前比对max和cur,取较大的一个(cur可能会减少,但max要始终保持最大值)
+![https://pic.leetcode-cn.com/1641513713-aIXckP-image.png](https://pic.leetcode-cn.com/1641513713-aIXckP-image.png)
