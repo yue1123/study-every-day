@@ -12,6 +12,7 @@
   - [string ](./src/ECMAscript/string)
 - [leetCode 每日算法题](./src/leetcode)
   - [addStrings  两字符串相加](./src/leetcode/addStrings)
+  - [bracketsMaxDepth  括号的最大嵌套深度](./src/leetcode/bracketsMaxDepth)
   - [climbStairs  爬楼梯](./src/leetcode/climbStairs)
   - [deleteDuplicates  删除排序链表中的重复元素](./src/leetcode/deleteDuplicates)
   - [deleteNode  删除链表中的节点](./src/leetcode/deleteNode)
