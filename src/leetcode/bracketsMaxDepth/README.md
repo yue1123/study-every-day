@@ -1,5 +1,7 @@
 # 括号的最大嵌套深度
 > 题目链接: [https://leetcode.cn/problems/maximum-nesting-depth-of-the-parentheses/](https://leetcode.cn/problems/maximum-nesting-depth-of-the-parentheses/)
+
+
 如果字符串满足以下条件之一，则可以称之为 有效括号字符串（valid parentheses string，可以简写为 VPS）：
 
 字符串是一个空字符串 ""，或者是一个不为 "(" 或 ")" 的单字符。
