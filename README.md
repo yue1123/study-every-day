@@ -42,6 +42,7 @@
   - [reverseString  反转字符串](./src/leetcode/reverseString)
   - [rotate  旋转图像](./src/leetcode/rotate)
   - [searchInsert  搜索插入位置](./src/leetcode/searchInsert)
+  - [sortedArrayToBST  将有序数组转换为二叉搜索树](./src/leetcode/sortedArrayToBST)
   - [strStr  实现 strStr()](./src/leetcode/strStr)
   - [twoSum  两数之和](./src/leetcode/twoSum)
 - [Promise  Promise 八股文](./src/Promise)
