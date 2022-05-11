@@ -11,6 +11,7 @@
   - [MyPromise  术语](./src/ECMAscript/MyPromise)
   - [string ](./src/ECMAscript/string)
 - [leetCode 每日算法题](./src/leetcode)
+  - [addBinary  给你两个二进制字符串，返回它们的和（用二进制表示）。](./src/leetcode/addBinary)
   - [addStrings  两字符串相加](./src/leetcode/addStrings)
   - [bracketsMaxDepth  括号的最大嵌套深度](./src/leetcode/bracketsMaxDepth)
   - [climbStairs  爬楼梯](./src/leetcode/climbStairs)
