@@ -19,6 +19,7 @@
   - [deleteNode  删除链表中的节点](./src/leetcode/deleteNode)
   - [firstUniqChar  字符串中的第一个唯一字符](./src/leetcode/firstUniqChar)
   - [hasCycle  环形链表](./src/leetcode/hasCycle)
+  - [inorderTraversal  二叉树的中序遍历](./src/leetcode/inorderTraversal)
   - [intersect  两个数组的交集 II](./src/leetcode/intersect)
   - [isAnagram  有效的字母异位词](./src/leetcode/isAnagram)
   - [isPalindrome  验证回文串](./src/leetcode/isPalindrome)
