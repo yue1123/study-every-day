@@ -25,4 +25,4 @@
 
 ## 题解
 
-[参考 addStrings 两字符串相加](./src/leetcode/addStrings)
+[参考 addStrings 两字符串相加](https://github.com/yue1123/study-every-day/tree/master/src/leetcode/addStrings)
