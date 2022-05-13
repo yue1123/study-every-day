@@ -24,6 +24,7 @@
   - [isAnagram  有效的字母异位词](./src/leetcode/isAnagram)
   - [isPalindrome  验证回文串](./src/leetcode/isPalindrome)
   - [isPalindromeList  回文链表](./src/leetcode/isPalindromeList)
+  - [isSameTree  相同的树](./src/leetcode/isSameTree)
   - [isSymmetric  对称二叉树](./src/leetcode/isSymmetric)
   - [isValidBrackets  有效的括号](./src/leetcode/isValidBrackets)
   - [isValidBST  验证二叉搜索树](./src/leetcode/isValidBST)
