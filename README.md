@@ -22,6 +22,7 @@
   - [inorderTraversal  二叉树的中序遍历](./src/leetcode/inorderTraversal)
   - [intersect  两个数组的交集 II](./src/leetcode/intersect)
   - [isAnagram  有效的字母异位词](./src/leetcode/isAnagram)
+  - [isBlance  平衡二叉树](./src/leetcode/isBlance)
   - [isPalindrome  验证回文串](./src/leetcode/isPalindrome)
   - [isPalindromeList  回文链表](./src/leetcode/isPalindromeList)
   - [isSameTree  相同的树](./src/leetcode/isSameTree)
