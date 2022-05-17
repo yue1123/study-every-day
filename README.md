@@ -40,6 +40,7 @@
   - [mergeTwoLists  合并两个有序链表](./src/leetcode/mergeTwoLists)
   - [moveZeroes  移动零](./src/leetcode/moveZeroes)
   - [plusOne  加一](./src/leetcode/plusOne)
+  - [preorderTraversal  二叉树的前序遍历](./src/leetcode/preorderTraversal)
   - [removeNthFromEnd  删除链表的倒数第 N 个节点](./src/leetcode/removeNthFromEnd)
   - [reverseList  反转链表](./src/leetcode/reverseList)
   - [reverseNumber  整数反转](./src/leetcode/reverseNumber)
