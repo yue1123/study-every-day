@@ -38,6 +38,7 @@
   - [maxSubArray  最大子数组和](./src/leetcode/maxSubArray)
   - [mergeTwoArray  合并两个有序数组](./src/leetcode/mergeTwoArray)
   - [mergeTwoLists  合并两个有序链表](./src/leetcode/mergeTwoLists)
+  - [minDepth  二叉树的最小深度](./src/leetcode/minDepth)
   - [moveZeroes  移动零](./src/leetcode/moveZeroes)
   - [plusOne  加一](./src/leetcode/plusOne)
   - [preorderTraversal  二叉树的前序遍历](./src/leetcode/preorderTraversal)
