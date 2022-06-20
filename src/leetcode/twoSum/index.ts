@@ -57,9 +57,26 @@ var twoSum3 = function (nums: number[], target: number) {
 	}
 }
 
+/**
+ * hashmap
+ * 与twoSum3方法一样，只是map用Object替代了
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum4 = function (nums: number[], target: number) {
+	const map = Object.create(null)
+	for (let i = 0; i < nums.length; i++) {
+		if (map[nums[i]] !== undefined) {
+			return [map[nums[i]], i]
+		}
+		map[target - nums[i]] = i
+	}
+}
+
 console.log(twoSum3([3, 2, 4], 6))
 
-export { twoSum1, twoSum2, twoSum3 }
+export { twoSum1, twoSum2, twoSum3, twoSum4 }
 // i=0
 // {
 //   3:0
