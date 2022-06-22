@@ -22,9 +22,7 @@ var addBinary = function (a: string, b: string): string {
 		j--
 		res.unshift(temp + '')
 	}
-	if (up !== 0) {
-		res.unshift(up + '')
-	}
+	up && res.unshift('1')
 	return res.join('')
 }
 

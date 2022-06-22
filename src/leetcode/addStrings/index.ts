@@ -22,9 +22,7 @@ var addStrings = function (num1: string, num2: string): string {
 		p1--
 		p2--
 	}
-	if (up !== 0) {
-		res.unshift('1')
-	}
+	up && res.unshift('1')
 	return res.join('')
 }
 
