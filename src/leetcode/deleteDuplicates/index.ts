@@ -22,5 +22,4 @@ var deleteDuplicates = function (head: ListNode | null) {
 }
 
 const linkedList = generateListNodeByArr([1, 1, 2, 3, 3])
-
 console.log(deleteDuplicates(linkedList))
