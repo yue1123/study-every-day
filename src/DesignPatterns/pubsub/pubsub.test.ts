@@ -25,7 +25,6 @@ describe('测试发布订阅实现', () => {
 		let count = 0
 		const _done = () => {
 			count++
-			console.log(count)
 			if (count === 3) done()
 		}
 		pubSub.on('update', (message) => {
@@ -50,7 +49,6 @@ describe('测试发布订阅实现', () => {
 		let count = 0
 		const _done = () => {
 			count++
-			console.log(count)
 			if (count === 3) done()
 		}
 		pubSub.on('update', (message) => {
@@ -65,7 +63,7 @@ describe('测试发布订阅实现', () => {
 			console.log('我收到了mounted消息', message)
 			_done()
 		})
-    
+
 		setTimeout(() => {
 			pubSub.emit('create', '我是create消息')
 		}, 1000)
