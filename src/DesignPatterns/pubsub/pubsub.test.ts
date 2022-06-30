@@ -47,9 +47,10 @@ describe('测试发布订阅实现', () => {
 	it('多个类型的订阅', (done: () => void) => {
 		const pubSub = new PubSub()
 		let count = 0
+		let totalTestCount = 4
 		const _done = () => {
 			count++
-			if (count === 3) done()
+			if (count === totalTestCount) done()
 		}
 		pubSub.on('update', (message) => {
 			console.log('我收到了update消息', message)
@@ -57,6 +58,10 @@ describe('测试发布订阅实现', () => {
 		})
 		pubSub.on('create', (message) => {
 			console.log('我收到了create消息', message)
+			_done()
+		})
+		pubSub.on('mounted', (message) => {
+			console.log('我收到了mounted消息', message)
 			_done()
 		})
 		pubSub.on('mounted', (message) => {
@@ -73,5 +78,19 @@ describe('测试发布订阅实现', () => {
 		setTimeout(() => {
 			pubSub.emit('update', '我是update消息')
 		}, 3000)
+	})
+
+	it('取消订阅', (done: (error?: Error) => void) => {
+		const pubSub = new PubSub()
+		const cal = (message: string) => {
+			console.log('我收到了update消息', message)
+			done(new Error('取消订阅后,不应该调用该回调'))
+		}
+		pubSub.on('update', cal)
+		pubSub.on('update', cal)
+		pubSub.on('update', cal)
+		pubSub.off('update')
+		pubSub.emit('update', '我是update消息')
+    done()
 	})
 })
