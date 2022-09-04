@@ -9,6 +9,7 @@
 - [手写 ECMAscript 方法](./src/ECMAscript)
   - [MyPromise  术语](./src/ECMAscript/MyPromise)
   - [string ](./src/ECMAscript/string)
+- [MaximumConcurrent  js 实现最大并发数控制](./src/MaximumConcurrent)
 - [Promise  Promise 八股文](./src/Promise)
 - [Typescript](./src/Typescript)
 - [angular 参数注入实现](./src/angularParamsInject)
