@@ -28,5 +28,8 @@
 	},
 	"dependencies": {
 		"@types/node": "^17.0.12"
+	},
+	"engines": {
+		"node": ">=14.0.0"
 	}
 }

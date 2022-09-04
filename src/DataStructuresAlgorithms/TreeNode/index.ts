@@ -1,14 +1,8 @@
-interface TreeNodeOptions {
-	val: any
-	left: TreeNode | null
-	right: TreeNode | null
-}
-
 export class TreeNode {
 	public val: any
 	public left: TreeNode | null
 	public right: TreeNode | null
-	constructor({ val, left, right }: TreeNodeOptions) {
+	constructor(val: any, left: TreeNode | null, right: TreeNode | null) {
 		this.val = val === undefined ? 0 : val
 		this.left = left === undefined ? null : left
 		this.right = right === undefined ? null : right
@@ -32,11 +26,7 @@ export function generateTreeNodeByArray(arr: any[]): TreeNode {
 	let i = 0
 	arr = arr.map((item) => {
 		if (item === null) return null
-		return new TreeNode({
-			val: item,
-			left: null,
-			right: null
-		})
+		return new TreeNode(item, null, null)
 	})
 	let treeNode = arr[0]
 	while (i < len) {
