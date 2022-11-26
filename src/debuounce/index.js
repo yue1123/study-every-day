@@ -5,7 +5,7 @@
  * @param {boolean} immediate 是否立即出发
  */
 function debounce(fn, wait, immediate) {
-  if (fn === undefined || typeof fn !== 'function') throw new Error('must have a callback fn')
+  if (typeof fn !== 'function') throw new Error('must have a callback fn')
   if (typeof wait === 'boolean') immediate = wait
   if (wait === undefined || typeof wait !== 'number') wait = 300
   let timer = null
