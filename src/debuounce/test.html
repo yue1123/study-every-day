@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="username" class="username">123</button>
+    <script src="./index.js"></script>
+    <script>
+      const el = document.getElementById('username')
+      el.onclick = debounce(
+        () => {
+          console.log(123123)
+        },
+        false
+      )
+      // function hasClassName(el, className) {
+      //   return el.className === className
+      // }
+
+      // function a(name) {}
+      // console.log(a.prototype)
+    </script>
+  </body>
+</html>
