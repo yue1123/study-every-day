@@ -20,3 +20,22 @@ function debounce(fn, wait, immediate) {
     _immediate && fn.apply(_this, arg)
   }
 }
+
+function test() {
+  const user = new Object()
+  user.name = 'lisi'
+  user.age = 18
+  user.gender = '男'
+  return user
+}
+
+function test() {
+  const user = {
+    name: 'lisi',
+    age: 18,
+    gender: '男'
+  }
+  return user
+}
+
+test()
