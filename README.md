@@ -33,6 +33,7 @@
   - [isBlance  平衡二叉树](./src/leetcode/isBlance)
   - [isPalindrome  验证回文串](./src/leetcode/isPalindrome)
   - [isPalindromeList  回文链表](./src/leetcode/isPalindromeList)
+  - [isPalindromeNumber  回文数](./src/leetcode/isPalindromeNumber)
   - [isSameTree  相同的树](./src/leetcode/isSameTree)
   - [isSymmetric  对称二叉树](./src/leetcode/isSymmetric)
   - [isValidBST  验证二叉搜索树](./src/leetcode/isValidBST)
