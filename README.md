@@ -16,6 +16,8 @@
 - [Promise  Promise 八股文](./src/Promise)
 - [Typescript](./src/Typescript)
 - [angular 参数注入实现](./src/angularParamsInject)
+- [css ](./src/css)
+  - [text-animation  纯 css 实现的文字特效](./src/css/text-animation)
 - [debuounce  手写防抖](./src/debuounce)
   - [test.html ](./src/debuounce/test.html)
 - [leetCode 每日算法题](./src/leetcode)

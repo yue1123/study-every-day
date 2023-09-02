@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @property --animation-per {
+        syntax: '<percentage>';
+        inherits: false;
+        initial-value: 0%;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000;
+      }
+      .container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: space-around;
+        font-size: 18px;
+        color: #6da55c;
+      }
+      .col {
+        width: 10px;
+        word-break: break-all;
+        overflow-wrap: anywhere;
+        height: 100%;
+        position: relative;
+      }
+      .col::after {
+        content: '';
+        position: absolute;
+        display: inline-block;
+        width: 150%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        animation: test 1000ms infinite;
+      }
+      @keyframes test {
+        0% {
+          --animation-per: 0%;
+        }
+        100% {
+          --animation-per: 100%;
+        }
+      }
+      .col:nth-child(1)::after {
+        --size: 20%;
+        animation-delay: 808.13ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(2)::after {
+        --size: 36%;
+        animation-delay: 1597.78ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(3)::after {
+        --size: 2%;
+        animation-delay: 1299.45ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(4)::after {
+        --size: 27%;
+        animation-delay: 804.56ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(5)::after {
+        --size: 23%;
+        animation-delay: 602.36ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(6)::after {
+        --size: 49%;
+        animation-delay: 330.52ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(7)::after {
+        --size: 0%;
+        animation-delay: 1622.94ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(8)::after {
+        --size: 35%;
+        animation-delay: 641.59ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(9)::after {
+        --size: 20%;
+        animation-delay: 605.4ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(10)::after {
+        --size: 8%;
+        animation-delay: 1740.27ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(11)::after {
+        --size: 8%;
+        animation-delay: 1507.41ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(12)::after {
+        --size: 40%;
+        animation-delay: 1568.75ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(13)::after {
+        --size: 4%;
+        animation-delay: 1123.66ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(14)::after {
+        --size: 31%;
+        animation-delay: 526.3ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(15)::after {
+        --size: 19%;
+        animation-delay: 1373.22ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(16)::after {
+        --size: 48%;
+        animation-delay: 978.54ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(17)::after {
+        --size: 23%;
+        animation-delay: 952.54ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(18)::after {
+        --size: 40%;
+        animation-delay: 1824.47ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(19)::after {
+        --size: 19%;
+        animation-delay: 1278.9ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(20)::after {
+        --size: 33%;
+        animation-delay: 1945.27ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(21)::after {
+        --size: 45%;
+        animation-delay: 729.58ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(22)::after {
+        --size: 22%;
+        animation-delay: 414.24ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(23)::after {
+        --size: 49%;
+        animation-delay: 22.43ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(24)::after {
+        --size: 26%;
+        animation-delay: 1547.69ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(25)::after {
+        --size: 28%;
+        animation-delay: 1261.51ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(26)::after {
+        --size: 43%;
+        animation-delay: 1476.35ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(27)::after {
+        --size: 21%;
+        animation-delay: 1537.91ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(28)::after {
+        --size: 23%;
+        animation-delay: 1712.57ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(29)::after {
+        --size: 21%;
+        animation-delay: 284.75ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(30)::after {
+        --size: 1%;
+        animation-delay: 646.78ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(31)::after {
+        --size: 33%;
+        animation-delay: 1018.44ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(32)::after {
+        --size: 18%;
+        animation-delay: 1575.76ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(33)::after {
+        --size: 38%;
+        animation-delay: 639.6ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(34)::after {
+        --size: 2%;
+        animation-delay: 1676.06ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(35)::after {
+        --size: 21%;
+        animation-delay: 581.2ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(36)::after {
+        --size: 29%;
+        animation-delay: 606.6ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(37)::after {
+        --size: 23%;
+        animation-delay: 663.57ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(38)::after {
+        --size: 44%;
+        animation-delay: 1055.43ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(39)::after {
+        --size: 45%;
+        animation-delay: 1215.43ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(40)::after {
+        --size: 3%;
+        animation-delay: 1428.69ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(41)::after {
+        --size: 45%;
+        animation-delay: 251.57ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(42)::after {
+        --size: 10%;
+        animation-delay: 885.32ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(43)::after {
+        --size: 3%;
+        animation-delay: 993.71ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(44)::after {
+        --size: 11%;
+        animation-delay: 1977.57ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(45)::after {
+        --size: 44%;
+        animation-delay: 682.1ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(46)::after {
+        --size: 5%;
+        animation-delay: 28.19ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+      .col:nth-child(47)::after {
+        --size: 22%;
+        animation-delay: 846.81ms;
+        background: linear-gradient(
+          to bottom,
+          #000 var(--animation-per),
+          transparent calc(var(--animation-per) + var(--size)),
+          #000 calc(var(--animation-per) + var(--size))
+        );
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+      <div class="col">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque quos dolores minima</div>
+    </div>
+  </body>
+</html>
